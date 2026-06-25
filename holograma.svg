@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="100%" height="auto" style="background-color: transparent; overflow: hidden;">
+  <style>
+    * {
+      transform-box: fill-box;
+    }
+    
+    .blob {
+      transform-origin: center;
+    }
+    .blob-1 { animation: float-1 8s ease-in-out infinite; }
+    .blob-2 { animation: float-2 10s ease-in-out infinite; }
+    .blob-3 { animation: float-3 12s ease-in-out infinite; }
+
+    .orbit {
+      transform-origin: center;
+      fill: none;
+    }
+    .orbit-1 { animation: spin 15s linear infinite; }
+    .orbit-2 { animation: spin-rev 20s linear infinite; }
+    .orbit-3 { animation: spin 25s linear infinite; }
+
+    .core {
+      transform-origin: center;
+      animation: pulse-scale 4s ease-in-out infinite;
+    }
+    .core-glow {
+      transform-origin: center;
+      animation: pulse-opacity 3s ease-in-out infinite;
+    }
+
+    .particle {
+      transform-origin: center;
+      animation: pulse-opacity 2.5s ease-in-out infinite;
+    }
+    .p-2 { animation-delay: 0.5s; }
+    .p-3 { animation-delay: 1s; }
+    .p-4 { animation-delay: 1.5s; }
+
+    .line-draw {
+      stroke-dasharray: 400;
+      animation: dash 6s linear infinite;
+    }
+    .line-draw-2 {
+      stroke-dasharray: 400;
+      animation: dash 6s linear infinite;
+      animation-delay: 3s;
+    }
+
+    @keyframes float-1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(40px, -30px) scale(1.1); }
+    }
+    @keyframes float-2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(-50px, 40px) scale(0.9); }
+    }
+    @keyframes float-3 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(30px, 50px) scale(1.15); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spin-rev {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes pulse-scale {
+      0%, 100% { opacity: 0.6; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    @keyframes pulse-opacity {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: -800; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="grad-cp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe" />
+      <stop offset="100%" stop-color="#4facfe" />
+    </linearGradient>
+    <linearGradient id="grad-mp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fa709a" />
+      <stop offset="100%" stop-color="#fee140" />
+    </linearGradient>
+    <linearGradient id="grad-gb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#43e97b" />
+      <stop offset="100%" stop-color="#38f9d7" />
+    </linearGradient>
+    <filter id="blur-heavy" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="35" />
+    </filter>
+    <filter id="glow-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Depth Layer -->
+  <circle class="blob blob-1" cx="200" cy="100" r="100" fill="url(#grad-cp)" opacity="0.5" filter="url(#blur-heavy)" />
+  <circle class="blob blob-2" cx="600" cy="200" r="120" fill="url(#grad-mp)" opacity="0.5" filter="url(#blur-heavy)" />
+  <circle class="blob blob-3" cx="400" cy="150" r="80" fill="url(#grad-gb)" opacity="0.4" filter="url(#blur-heavy)" />
+
+  <!-- Midground Fluid Lines -->
+  <path class="line-draw" d="M -50,150 Q 200,50 400,150 T 850,150" fill="none" stroke="url(#grad-cp)" stroke-width="2" opacity="0.8"/>
+  <path class="line-draw-2" d="M -50,180 Q 200,300 400,180 T 850,180" fill="none" stroke="url(#grad-mp)" stroke-width="2" opacity="0.8"/>
+
+  <!-- Central Wireframe Orbits -->
+  <circle class="orbit orbit-1" cx="400" cy="150" r="60" stroke="url(#grad-cp)" stroke-width="2" filter="url(#glow-soft)" />
+  <circle class="orbit orbit-2" cx="400" cy="150" r="90" stroke="url(#grad-mp)" stroke-width="1.5" stroke-dasharray="15 25" filter="url(#glow-soft)" />
+  <circle class="orbit orbit-3" cx="400" cy="150" r="130" stroke="url(#grad-gb)" stroke-width="1" stroke-dasharray="40 15 8 25" filter="url(#glow-soft)" />
+
+  <!-- Inner Core Graphics -->
+  <polygon class="core" points="400,110 440,175 360,175" fill="url(#grad-cp)" filter="url(#glow-soft)" />
+  <circle class="core-glow" cx="400" cy="150" r="25" fill="url(#grad-mp)" />
+
+  <!-- Floating Glowing Particles -->
+  <circle class="particle p-1" cx="490" cy="150" r="5" fill="#00f2fe" filter="url(#glow-soft)" />
+  <circle class="particle p-2" cx="270" cy="150" r="5" fill="#fee140" filter="url(#glow-soft)" />
+  <circle class="particle p-3" cx="400" cy="280" r="6" fill="#43e97b" filter="url(#glow-soft)" />
+  <circle class="particle p-4" cx="400" cy="20" r="6" fill="#fa709a" filter="url(#glow-soft)" />
+  <circle class="particle p-1" cx="330" cy="70" r="4" fill="#38f9d7" filter="url(#glow-soft)" />
+  <circle class="particle p-2" cx="480" cy="240" r="4" fill="#4facfe" filter="url(#glow-soft)" />
+</svg>
