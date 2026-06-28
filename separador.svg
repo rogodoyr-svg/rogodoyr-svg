@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 20" xmlns="http://www.w3.org/2000/svg" style="background:transparent;width:100%;height:20px;">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#7b2ff7"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="flash" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Línea izquierda (crece desde el borde izquierdo hacia el centro) -->
+  <line x1="0" y1="10" x2="0" y2="10" stroke="url(#grad)" stroke-width="1.5" filter="url(#glow)" opacity="0.8">
+    <animate attributeName="x2" values="0;400;400;0;0" keyTimes="0;0.45;0.5;0.95;1" dur="3s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Línea derecha (crece desde el borde derecho hacia el centro) -->
+  <line x1="800" y1="10" x2="800" y2="10" stroke="url(#grad)" stroke-width="1.5" filter="url(#glow)" opacity="0.8">
+    <animate attributeName="x2" values="800;400;400;800;800" keyTimes="0;0.45;0.5;0.95;1" dur="3s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Punto izquierdo -->
+  <circle cx="0" cy="10" r="3" fill="#00d4ff" filter="url(#glow)">
+    <animate attributeName="cx" values="0;400;400;0;0" keyTimes="0;0.45;0.5;0.95;1" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </circle>
+
+  <!-- Punto derecho -->
+  <circle cx="800" cy="10" r="3" fill="#7b2ff7" filter="url(#glow)">
+    <animate attributeName="cx" values="800;400;400;800;800" keyTimes="0;0.45;0.5;0.95;1" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </circle>
+
+  <!-- Efecto de colisión/flash en el centro -->
+  <circle cx="400" cy="10" r="0" fill="white" filter="url(#flash)">
+    <animate attributeName="r" values="0;0;6;0;0" keyTimes="0;0.44;0.47;0.5;1" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.44;0.47;0.5;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
