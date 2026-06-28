@@ -26,7 +26,7 @@
 ### Tools & Platforms
 
 <p>
-<img src="https://skillicons.dev/icons?i=git,github,vscode,vercel,idea,nodejs,npm," />
+<img src="https://skillicons.dev/icons?i=git,github,vscode,vercel,idea,nodejs,npm" />
 </p>
 
 <p align="center">
