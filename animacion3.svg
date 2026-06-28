@@ -1,18 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="100%" preserveAspectRatio="xMidYMid meet">
   <defs>
     <style><![CDATA[
-      .bg { fill: #050a14; }
-      .orb-slow { animation: drift1 16s ease-in-out infinite; transform-origin: center; }
-      .orb-med  { animation: drift2 11s ease-in-out infinite; transform-origin: center; }
-      .orb-fast { animation: drift3 8s  ease-in-out infinite; transform-origin: center; }
+      .bg { fill: #03060d; }
 
+      /* === Estrellas lejanas (twinkle) === */
+      .star { animation: twinkle 4s ease-in-out infinite; }
+      .s1 { animation-delay: 0s;    animation-duration: 3.2s; }
+      .s2 { animation-delay: -0.6s; animation-duration: 4.1s; }
+      .s3 { animation-delay: -1.2s; animation-duration: 3.6s; }
+      .s4 { animation-delay: -1.8s; animation-duration: 4.8s; }
+      .s5 { animation-delay: -2.4s; animation-duration: 3.9s; }
+      .s6 { animation-delay: -3.0s; animation-duration: 4.4s; }
+      .s7 { animation-delay: -0.3s; animation-duration: 5.2s; }
+      .s8 { animation-delay: -2.1s; animation-duration: 3.4s; }
+
+      /* === Estrellas con efecto viaje espacial (warp) === */
+      .warp { transform-origin: 400px 150px; }
+      .w1 { animation: warp1 6s  linear infinite; }
+      .w2 { animation: warp2 7s  linear infinite; animation-delay: -1s; }
+      .w3 { animation: warp3 5.5s linear infinite; animation-delay: -2.5s; }
+      .w4 { animation: warp4 8s  linear infinite; animation-delay: -3s; }
+      .w5 { animation: warp5 6.5s linear infinite; animation-delay: -4s; }
+      .w6 { animation: warp6 7.5s linear infinite; animation-delay: -1.5s; }
+      .w7 { animation: warp7 5s  linear infinite; animation-delay: -3.5s; }
+      .w8 { animation: warp8 9s  linear infinite; animation-delay: -5s; }
+      .w9 { animation: warp9 6.2s linear infinite; animation-delay: -2s; }
+      .w10 { animation: warp10 7.8s linear infinite; animation-delay: -4.5s; }
+
+      /* === Anillos orbitales === */
       .ring1 { animation: spin3d 12s linear infinite; transform-origin: 400px 150px; }
       .ring2 { animation: spin3dRev 16s linear infinite; transform-origin: 400px 150px; }
       .ring3 { animation: spin3d 20s linear infinite; transform-origin: 400px 150px; }
 
+      /* === Hexágono central === */
       .hex { animation: spinHex 18s linear infinite; transform-origin: 400px 150px; }
       .hex-inner { animation: spinHexRev 10s linear infinite; transform-origin: 400px 150px; }
 
+      /* === Partículas flotantes === */
       .particle { animation: float 5s ease-in-out infinite; }
       .p1 { animation-delay: 0s; }
       .p2 { animation-delay: -0.8s; }
@@ -21,6 +45,7 @@
       .p5 { animation-delay: -3.2s; }
       .p6 { animation-delay: -4.0s; }
 
+      /* === Esferas orbitales === */
       .orbit1 { animation: orbit1 8s linear infinite; transform-origin: 400px 150px; }
       .orbit2 { animation: orbit2 12s linear infinite; transform-origin: 400px 150px; }
       .orbit3 { animation: orbit3 10s linear infinite; transform-origin: 400px 150px; }
@@ -33,6 +58,7 @@
       .scan { animation: scan 4s ease-in-out infinite; }
       .pulse { animation: pulse 2.5s ease-in-out infinite; transform-origin: 400px 150px; }
 
+      /* === Textos === */
       .title {
         font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
         font-weight: 300;
@@ -57,18 +83,73 @@
       .title-anim { animation: titleFade 5s ease-in-out infinite; }
       .sub-anim   { animation: subFade 5s ease-in-out infinite; animation-delay: -2.5s; }
 
-      @keyframes drift1 {
-        0%,100% { transform: translate(0,0) scale(1); }
-        50%     { transform: translate(40px,-30px) scale(1.15); }
+      /* === Keyframes === */
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.15; }
+        50%      { opacity: 0.9; }
       }
-      @keyframes drift2 {
-        0%,100% { transform: translate(0,0) scale(1); }
-        50%     { transform: translate(-50px,35px) scale(1.2); }
+
+      @keyframes warp1 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(320px, -110px) scale(2.5); opacity: 0; }
       }
-      @keyframes drift3 {
-        0%,100% { transform: translate(0,0) scale(1); }
-        50%     { transform: translate(30px,40px) scale(0.85); }
+      @keyframes warp2 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(-340px, -90px) scale(2.2); opacity: 0; }
       }
+      @keyframes warp3 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(280px, 120px) scale(2.8); opacity: 0; }
+      }
+      @keyframes warp4 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(-300px, 100px) scale(2.3); opacity: 0; }
+      }
+      @keyframes warp5 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(150px, -140px) scale(2.6); opacity: 0; }
+      }
+      @keyframes warp6 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(-180px, -130px) scale(2.1); opacity: 0; }
+      }
+      @keyframes warp7 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(200px, 130px) scale(2.4); opacity: 0; }
+      }
+      @keyframes warp8 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(-250px, 60px) scale(2.7); opacity: 0; }
+      }
+      @keyframes warp9 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(350px, 30px) scale(2.0); opacity: 0; }
+      }
+      @keyframes warp10 {
+        0%   { transform: translate(0, 0) scale(0.1); opacity: 0; }
+        8%   { opacity: 1; }
+        85%  { opacity: 0.8; }
+        100% { transform: translate(-120px, -150px) scale(2.5); opacity: 0; }
+      }
+
       @keyframes spin3d {
         0%   { transform: rotate(0deg)   scaleX(1); }
         25%  { transform: rotate(90deg)  scaleX(0.25); }
@@ -135,35 +216,6 @@
       }
     ]]></style>
 
-    <radialGradient id="g1" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#00b8ff" stop-opacity="0.6"/>
-      <stop offset="60%" stop-color="#0066cc" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#00ff88" stop-opacity="0.55"/>
-      <stop offset="60%" stop-color="#00aa55" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g3" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#ff0040" stop-opacity="0.5"/>
-      <stop offset="60%" stop-color="#aa0028" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g4" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#00e5ff" stop-opacity="0.5"/>
-      <stop offset="60%" stop-color="#0088aa" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g5" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#0066ff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="g6" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"  stop-color="#ff3366" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#050a14" stop-opacity="0"/>
-    </radialGradient>
-
     <linearGradient id="ringGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%"  stop-color="#00e5ff"/>
       <stop offset="50%" stop-color="#00ff88"/>
@@ -191,29 +243,79 @@
       <feGaussianBlur stdDeviation="1.5" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softBlur"><feGaussianBlur stdDeviation="20"/></filter>
-    <filter id="medBlur"><feGaussianBlur stdDeviation="10"/></filter>
     <filter id="strongGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <filter id="starGlow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="1" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
-  <!-- Fondo -->
+  <!-- Fondo profundo -->
   <rect class="bg" width="800" height="300"/>
 
-  <!-- Capa profunda: orbes difuminados (más movimiento) -->
-  <g filter="url(#softBlur)">
-    <circle class="orb-slow" cx="120" cy="80"  r="150" fill="url(#g1)"/>
-    <circle class="orb-med"  cx="680" cy="220" r="170" fill="url(#g2)"/>
-    <circle class="orb-fast" cx="720" cy="50"  r="120" fill="url(#g3)"/>
-    <circle class="orb-slow" cx="80"  cy="250" r="130" fill="url(#g4)"/>
-    <circle class="orb-med"  cx="400" cy="150" r="200" fill="url(#g5)"/>
-    <circle class="orb-fast" cx="250" cy="200" r="100" fill="url(#g6)"/>
-    <circle class="orb-slow" cx="550" cy="80"  r="110" fill="url(#g1)"/>
+  <!-- ===== CAMPO DE ESTRELLAS LEJANAS (Starfield) ===== -->
+  <g filter="url(#starGlow)">
+    <!-- Estrellas con twinkle -->
+    <circle class="star s1" cx="45"  cy="22"  r="0.6" fill="#ffffff"/>
+    <circle class="star s2" cx="112" cy="58"  r="0.8" fill="#b8e8ff"/>
+    <circle class="star s3" cx="78"  cy="134" r="0.5" fill="#ffffff"/>
+    <circle class="star s4" cx="32"  cy="210" r="0.7" fill="#00e5ff"/>
+    <circle class="star s5" cx="95"  cy="275" r="0.6" fill="#ffffff"/>
+    <circle class="star s6" cx="165" cy="18"  r="0.9" fill="#b8e8ff"/>
+    <circle class="star s7" cx="210" cy="82"  r="0.5" fill="#ffffff"/>
+    <circle class="star s8" cx="188" cy="165" r="0.7" fill="#00ff88"/>
+    <circle class="star s1" cx="245" cy="245" r="0.6" fill="#ffffff"/>
+    <circle class="star s3" cx="142" cy="198" r="0.8" fill="#b8e8ff"/>
+    <circle class="star s5" cx="298" cy="35"  r="0.5" fill="#ffffff"/>
+    <circle class="star s2" cx="335" cy="112" r="0.7" fill="#00e5ff"/>
+    <circle class="star s6" cx="312" cy="268" r="0.6" fill="#ffffff"/>
+    <circle class="star s4" cx="378" cy="22"  r="0.8" fill="#b8e8ff"/>
+    <circle class="star s8" cx="425" cy="68"  r="0.5" fill="#ffffff"/>
+    <circle class="star s1" cx="468" cy="25"  r="0.7" fill="#00ff88"/>
+    <circle class="star s7" cx="495" cy="95"  r="0.6" fill="#ffffff"/>
+    <circle class="star s3" cx="522" cy="278" r="0.8" fill="#b8e8ff"/>
+    <circle class="star s5" cx="548" cy="42"  r="0.5" fill="#ffffff"/>
+    <circle class="star s2" cx="585" cy="125" r="0.7" fill="#00e5ff"/>
+    <circle class="star s6" cx="612" cy="18"  r="0.6" fill="#ffffff"/>
+    <circle class="star s4" cx="638" cy="198" r="0.8" fill="#b8e8ff"/>
+    <circle class="star s8" cx="665" cy="78"  r="0.5" fill="#ffffff"/>
+    <circle class="star s1" cx="692" cy="265" r="0.7" fill="#00ff88"/>
+    <circle class="star s3" cx="718" cy="42"  r="0.6" fill="#ffffff"/>
+    <circle class="star s5" cx="745" cy="135" r="0.8" fill="#b8e8ff"/>
+    <circle class="star s7" cx="772" cy="225" r="0.5" fill="#ffffff"/>
+    <circle class="star s2" cx="58"  cy="78"  r="0.7" fill="#00e5ff"/>
+    <circle class="star s4" cx="268" cy="142" r="0.6" fill="#ffffff"/>
+    <circle class="star s6" cx="482" cy="215" r="0.8" fill="#b8e8ff"/>
+    <circle class="star s8" cx="558" cy="178" r="0.5" fill="#ffffff"/>
+    <circle class="star s1" cx="155" cy="258" r="0.7" fill="#00ff88"/>
+    <circle class="star s3" cx="388" cy="288" r="0.6" fill="#ffffff"/>
+    <circle class="star s5" cx="622" cy="288" r="0.8" fill="#b8e8ff"/>
+    <circle class="star s7" cx="755" cy="58"  r="0.5" fill="#ffffff"/>
+    <circle class="star s2" cx="25"  cy="168" r="0.7" fill="#00e5ff"/>
+    <circle class="star s4" cx="442" cy="148" r="0.6" fill="#ffffff"/>
+    <circle class="star s6" cx="175" cy="92"  r="0.8" fill="#b8e8ff"/>
+    <circle class="star s8" cx="688" cy="152" r="0.5" fill="#ffffff"/>
+    <circle class="star s1" cx="355" cy="188" r="0.7" fill="#00ff88"/>
   </g>
 
-  <!-- Capa media: anillos orbitales -->
+  <!-- ===== ESTRELLAS CON EFECTO VIAJE ESPACIAL (Warp) ===== -->
+  <g filter="url(#starGlow)">
+    <circle class="warp w1"  cx="400" cy="150" r="0.8" fill="#ffffff"/>
+    <circle class="warp w2"  cx="400" cy="150" r="0.7" fill="#00e5ff"/>
+    <circle class="warp w3"  cx="400" cy="150" r="0.9" fill="#ffffff"/>
+    <circle class="warp w4"  cx="400" cy="150" r="0.6" fill="#b8e8ff"/>
+    <circle class="warp w5"  cx="400" cy="150" r="0.8" fill="#ffffff"/>
+    <circle class="warp w6"  cx="400" cy="150" r="0.7" fill="#00ff88"/>
+    <circle class="warp w7"  cx="400" cy="150" r="0.9" fill="#ffffff"/>
+    <circle class="warp w8"  cx="400" cy="150" r="0.6" fill="#b8e8ff"/>
+    <circle class="warp w9"  cx="400" cy="150" r="0.8" fill="#ffffff"/>
+    <circle class="warp w10" cx="400" cy="150" r="0.7" fill="#00e5ff"/>
+  </g>
+
+  <!-- ===== Capa media: anillos orbitales ===== -->
   <g opacity="0.85">
     <ellipse class="ring1" cx="400" cy="150" rx="260" ry="70"
              fill="none" stroke="url(#ringGrad1)" stroke-width="1.2"
@@ -226,7 +328,7 @@
              stroke-dasharray="1 8"/>
   </g>
 
-  <!-- Esferas orbitales -->
+  <!-- ===== Esferas orbitales ===== -->
   <g filter="url(#strongGlow)">
     <circle class="orbit1" cx="400" cy="150" r="4" fill="#00e5ff"/>
     <circle class="orbit2" cx="400" cy="150" r="3" fill="#00ff88"/>
@@ -236,7 +338,7 @@
     <circle class="orbit3" cx="400" cy="150" r="4" fill="#00e5ff" style="animation-delay: -5s;"/>
   </g>
 
-  <!-- Hexágono central con rotación -->
+  <!-- ===== Hexágono central ===== -->
   <g class="pulse">
     <g class="hex">
       <polygon points="400,95 447.6,122.5 447.6,177.5 400,205 352.4,177.5 352.4,122.5"
@@ -249,7 +351,7 @@
     <circle cx="400" cy="150" r="3" fill="#ffffff" filter="url(#glow)"/>
   </g>
 
-  <!-- Partículas flotantes con efecto de parpadeo -->
+  <!-- ===== Partículas flotantes con parpadeo ===== -->
   <g filter="url(#glow)">
     <circle class="particle p1 blink1" cx="100" cy="70"  r="2"   fill="#00e5ff"/>
     <circle class="particle p2 blink2" cx="700" cy="90"  r="1.8" fill="#00ff88"/>
@@ -273,12 +375,12 @@
     <circle class="particle p2 blink2" cx="760" cy="240" r="1.4" fill="#00e5ff"/>
   </g>
 
-  <!-- Línea de escaneo -->
+  <!-- ===== Línea de escaneo ===== -->
   <g class="scan" opacity="0.6">
     <line x1="0" y1="150" x2="800" y2="150" stroke="url(#ringGrad2)" stroke-width="0.5"/>
   </g>
 
-  <!-- Textos -->
+  <!-- ===== Textos ===== -->
   <g class="title-anim">
     <text class="title" x="400" y="155" text-anchor="middle" font-size="22">
       DEVELOPER &amp; ENGINEER
