@@ -297,4 +297,11 @@
   <circle cx="462" cy="242" r="0.8" fill="#00f0ff" class="pt p9"/>
   <circle cx="200" cy="90"  r="0.6" fill="#a855f7" class="pt p3"/>
   <circle cx="600" cy="85"  r="0.7" fill="#00ff88" class="pt p6"/>
+
+  
+  <text x="400" y="110" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle" filter="url(#strongGlow)">
+    Rodrigo Godoy
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </text>
+  
 </svg>
