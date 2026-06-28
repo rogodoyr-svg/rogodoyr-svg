@@ -1,94 +1,115 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="100%" height="auto">
   <style>
     text { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-    .orb, .core, .core-bg, .p1, .p2, .p3, .p4, .p5, .p6 {
-      transform-box: fill-box;
-      transform-origin: center;
+    
+    /* Truco de origen de transformación para que los anillos roten sobre su propio centro */
+    .orbit-1, .orbit-2, .orbit-3, .orbit-4, .orbit-5, .core-pulse {
+      transform-origin: 0 0;
     }
-    @keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes spin2 { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    @keyframes pulse { 0%, 100% { opacity: 0.9; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
-    @keyframes pulse-bg { 0%, 100% { opacity: 0.2; transform: scale(1.5); } 50% { opacity: 0.6; transform: scale(1.9); } }
-    @keyframes float1 { 0% { transform: translateY(0px) scale(1); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-40px) scale(0.4); opacity: 0; } }
-    @keyframes float2 { 0% { transform: translateY(0px) scale(1); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-60px) scale(0.4); opacity: 0; } }
+    
+    @keyframes spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    @keyframes pulse-core { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+    
+    /* Efectos de parpadeo (Blinking lights) */
+    @keyframes blink1 { 0%, 100% { opacity: 0.1; } 50% { opacity: 1; } }
+    @keyframes blink2 { 0%, 100% { opacity: 1; } 50% { opacity: 0.1; } }
+    @keyframes blink3 { 0%, 100% { opacity: 0.3; } 25% { opacity: 1; } 50% { opacity: 0.2; } 75% { opacity: 0.8; } }
+    @keyframes blink4 { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
     @keyframes flow { to { stroke-dashoffset: -200; } }
-    @keyframes text-pulse { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
 
-    .orb1 { animation: spin1 10s linear infinite; }
-    .orb2 { animation: spin2 15s linear infinite; }
-    .orb3 { animation: spin1 20s linear infinite; }
-    .core { animation: pulse 4s ease-in-out infinite; }
-    .core-bg { animation: pulse-bg 4s ease-in-out infinite; }
-    .p1 { animation: float1 4s ease-in-out infinite; }
-    .p2 { animation: float2 6s ease-in-out infinite; animation-delay: 1s; }
-    .p3 { animation: float1 5s ease-in-out infinite; animation-delay: 2s; }
-    .p4 { animation: float2 7s ease-in-out infinite; animation-delay: 0.5s; }
-    .p5 { animation: float1 8s ease-in-out infinite; animation-delay: 3s; }
-    .p6 { animation: float2 5.5s ease-in-out infinite; animation-delay: 1.5s; }
-    .text-main { animation: text-pulse 4s ease-in-out infinite; }
-    .flow-line { stroke-dasharray: 10 15; animation: flow 5s linear infinite; }
+    .orbit-1 { animation: spin-cw 8s linear infinite; }
+    .orbit-2 { animation: spin-ccw 12s linear infinite; }
+    .orbit-3 { animation: spin-cw 16s linear infinite; }
+    .orbit-4 { animation: spin-ccw 20s linear infinite; }
+    .orbit-5 { animation: spin-cw 6s linear infinite; }
+    .core-pulse { animation: pulse-core 3s ease-in-out infinite; }
+    
+    .b1 { animation: blink1 1.5s ease-in-out infinite; }
+    .b2 { animation: blink2 2s ease-in-out infinite; }
+    .b3 { animation: blink3 2.5s ease-in-out infinite; }
+    .b4 { animation: blink1 1.8s ease-in-out infinite; animation-delay: 0.5s; }
+    .b5 { animation: blink3 2.2s ease-in-out infinite; animation-delay: 1s; }
+    .b6 { animation: blink2 1.6s ease-in-out infinite; animation-delay: 1.5s; }
+    .b7 { animation: blink4 3s ease-in-out infinite; }
+    
+    .flow-line { stroke-dasharray: 8 12; animation: flow 4s linear infinite; }
   </style>
 
-  <defs>
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00f2ea"/>
-      <stop offset="50%" stop-color="#ff00d4"/>
-      <stop offset="100%" stop-color="#7000ff"/>
-    </linearGradient>
-    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f2ea"/>
-      <stop offset="100%" stop-color="#7000ff"/>
-    </linearGradient>
-    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="rgba(0, 242, 234, 0.1)"/>
-      <stop offset="50%" stop-color="rgba(255, 0, 212, 0.8)"/>
-      <stop offset="100%" stop-color="rgba(112, 0, 255, 0.1)"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background ambient shapes (simulated glow with opacity and scaling for depth) -->
-  <circle cx="200" cy="100" r="80" fill="rgba(0, 242, 234, 0.05)" class="orb2"/>
-  <circle cx="200" cy="100" r="50" fill="rgba(0, 242, 234, 0.1)" class="orb1"/>
-  <circle cx="650" cy="200" r="100" fill="rgba(255, 0, 212, 0.05)" class="orb1"/>
-  <circle cx="650" cy="200" r="70" fill="rgba(255, 0, 212, 0.1)" class="orb2"/>
-  <circle cx="400" cy="150" r="120" fill="rgba(112, 0, 255, 0.05)" class="orb3"/>
-
-  <!-- Animated Tech Core (Left) -->
-  <g transform="translate(250, 150)">
-    <!-- Orbits -->
-    <circle cx="0" cy="0" r="50" fill="none" stroke="rgba(0, 242, 234, 0.6)" stroke-width="1.5" stroke-dasharray="10 10" class="orb1"/>
-    <circle cx="0" cy="0" r="75" fill="none" stroke="rgba(255, 0, 212, 0.5)" stroke-width="1.5" stroke-dasharray="20 15" class="orb2"/>
-    <circle cx="0" cy="0" r="100" fill="none" stroke="rgba(112, 0, 255, 0.4)" stroke-width="1.5" stroke-dasharray="5 20" class="orb3"/>
-    
-    <!-- Core Shape with simulated neon glow -->
-    <polygon points="0,-25 25,0 0,25 -25,0" fill="rgba(0, 242, 234, 0.3)" class="core-bg"/>
-    <polygon points="0,-20 20,0 0,20 -20,0" fill="url(#coreGrad)" class="core"/>
-    
-    <!-- Core Particles -->
-    <circle cx="-30" cy="20" r="3" fill="#00f2ea" class="p1"/>
-    <circle cx="40" cy="-15" r="4" fill="#ff00d4" class="p2"/>
-    <circle cx="-10" cy="-40" r="2" fill="#7000ff" class="p3"/>
-    <circle cx="20" cy="35" r="3" fill="#00f2ea" class="p4"/>
-    <circle cx="60" cy="10" r="2" fill="#ff00d4" class="p5"/>
-    <circle cx="-50" cy="-10" r="2.5" fill="#00f2ea" class="p6"/>
+  <!-- Fondo: Luces parpadeantes esparcidas por toda la superficie -->
+  <g fill="#00F0FF">
+    <circle cx="50" cy="40" r="2" class="b1"/>
+    <circle cx="150" cy="250" r="3" class="b2"/>
+    <circle cx="350" cy="40" r="1.5" class="b3"/>
+    <circle cx="550" cy="260" r="2" class="b4"/>
+    <circle cx="750" cy="50" r="2.5" class="b5"/>
+    <circle cx="280" cy="200" r="1.5" class="b6"/>
+    <circle cx="600" cy="120" r="2" class="b7"/>
+    <circle cx="450" cy="280" r="1.5" class="b1"/>
+  </g>
+  
+  <g fill="#00FF9D">
+    <circle cx="100" cy="120" r="2" class="b3"/>
+    <circle cx="400" cy="260" r="3" class="b1"/>
+    <circle cx="620" cy="100" r="2" class="b4"/>
+    <circle cx="780" cy="200" r="1.5" class="b2"/>
+    <circle cx="200" cy="80" r="2.5" class="b5"/>
+    <circle cx="500" cy="50" r="2" class="b6"/>
+    <circle cx="320" cy="120" r="1.5" class="b7"/>
+  </g>
+  
+  <g fill="#0055FF">
+    <circle cx="20" cy="220" r="2.5" class="b4"/>
+    <circle cx="480" cy="50" r="2" class="b6"/>
+    <circle cx="680" cy="280" r="3" class="b1"/>
+    <circle cx="330" cy="180" r="1.5" class="b3"/>
+    <circle cx="80" cy="280" r="2" class="b5"/>
+    <circle cx="720" cy="220" r="2.5" class="b2"/>
   </g>
 
-  <!-- Typography (Right) -->
-  <g transform="translate(400, 0)">
-    <!-- Text with outline and fill for a modern futuristic look -->
-    <text x="0" y="140" font-size="48" font-weight="800" letter-spacing="2" class="text-main" fill="none" stroke="url(#textGrad)" stroke-width="1">DEVELOPER</text>
-    <text x="0" y="140" font-size="48" font-weight="800" letter-spacing="2" class="text-main" fill="url(#textGrad)">DEVELOPER</text>
-    
-    <text x="0" y="175" font-size="18" font-weight="500" letter-spacing="3" fill="rgba(255, 255, 255, 0.7)">// CREATIVE CODER & UI ENGINEER</text>
-    
-    <!-- Animated flowing underline -->
-    <path d="M0 200 L350 200" fill="none" stroke="url(#lineGrad)" stroke-width="2" class="flow-line"/>
+  <!-- Anillos rotantes de fondo (Profundidad tecnológica) -->
+  <g transform="translate(80, 50)">
+    <g class="orbit-2"><circle cx="0" cy="0" r="20" fill="none" stroke="rgba(0, 240, 255, 0.4)" stroke-width="1" stroke-dasharray="4 4"/></g>
+  </g>
+  <g transform="translate(720, 250)">
+    <g class="orbit-1"><circle cx="0" cy="0" r="30" fill="none" stroke="rgba(0, 255, 157, 0.4)" stroke-width="1" stroke-dasharray="6 6"/></g>
+  </g>
+  <g transform="translate(700, 80)">
+    <g class="orbit-3"><circle cx="0" cy="0" r="15" fill="none" stroke="rgba(0, 85, 255, 0.5)" stroke-width="1" stroke-dasharray="2 5"/></g>
+  </g>
+  <g transform="translate(120, 230)">
+    <g class="orbit-4"><circle cx="0" cy="0" r="25" fill="none" stroke="rgba(0, 240, 255, 0.3)" stroke-width="1" stroke-dasharray="10 5"/></g>
+  </g>
+  <g transform="translate(500, 270)">
+    <g class="orbit-5"><circle cx="0" cy="0" r="12" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1" stroke-dasharray="3 3"/></g>
   </g>
 
-  <!-- Floating particles around text for ambient depth -->
-  <circle cx="450" cy="100" r="2" fill="#00f2ea" class="p3"/>
-  <circle cx="750" cy="150" r="3" fill="#ff00d4" class="p4"/>
-  <circle cx="380" cy="230" r="2" fill="#7000ff" class="p5"/>
-  <circle cx="600" cy="90" r="2.5" fill="#00f2ea" class="p6"/>
-  <circle cx="680" cy="250" r="2" fill="#ff00d4" class="p1"/>
+  <!-- Núcleo Tecnológico Principal (Izquierda) -->
+  <g transform="translate(200, 150)">
+    <!-- Anillos del núcleo -->
+    <g class="orbit-1"><circle cx="0" cy="0" r="50" fill="none" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="10 10"/></g>
+    <g class="orbit-2"><circle cx="0" cy="0" r="70" fill="none" stroke="#0055FF" stroke-width="1.5" stroke-dasharray="20 15"/></g>
+    <g class="orbit-3"><circle cx="0" cy="0" r="90" fill="none" stroke="#00FF9D" stroke-width="1.5" stroke-dasharray="5 20"/></g>
+    
+    <!-- Forma central pulsante -->
+    <g class="core-pulse">
+      <polygon points="0,-20 20,0 0,20 -20,0" fill="none" stroke="#00F0FF" stroke-width="2"/>
+      <polygon points="0,-10 10,0 0,10 -10,0" fill="#00F0FF" opacity="0.8"/>
+    </g>
+    
+    <!-- Luces que orbitan el núcleo -->
+    <g class="orbit-1"><circle cx="0" cy="-50" r="3" fill="#00F0FF"/></g>
+    <g class="orbit-2"><circle cx="70" cy="0" r="3" fill="#0055FF"/></g>
+    <g class="orbit-3"><circle cx="0" cy="90" r="3" fill="#00FF9D"/></g>
+    <g class="orbit-4"><circle cx="-50" cy="0" r="2" fill="#ffffff"/></g>
+  </g>
+
+  <!-- Tipografía (Derecha) -->
+  <g transform="translate(340, 0)">
+    <text x="0" y="140" font-size="36" font-weight="800" letter-spacing="2" fill="#ffffff">DEVELOPER</text>
+    <text x="0" y="165" font-size="16" font-weight="400" letter-spacing="1" fill="#00FF9D">and path to computer engineering</text>
+    
+    <!-- Línea de flujo animada debajo del texto -->
+    <path d="M0 180 L350 180" fill="none" stroke="#00F0FF" stroke-width="2" class="flow-line" opacity="0.8"/>
+  </g>
 </svg>
