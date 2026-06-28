@@ -1,6 +1,33 @@
 <p align="center">
   <img src="animacion3.svg" width="100%" />
 </p>
+## ¡Hola! Soy Rodrigo Godoy 👋
+
+¡Bienvenido a mi espacio en GitHub! Soy estudiante de Ingeniería en Informática con un trasfondo profesional diverso que me ha brindado una gran capacidad de adaptación, resolución de problemas y visión estratégica. Actualmente enfocado en el desarrollo de software y la automatización de procesos.
+
+<p align="center">
+  <img src="separador.svg" width="100%" />
+</p>
+
+### 🚀 Sobre mí
+- 🎓 **Formación:** Estudiante de Ingeniería en Informática (camino al título de Analista Programador).
+- ⚙️ **Especialización:** Enfocado en Arquitectura de Microservicios y Automatización de Procesos (RPA / Business Automation).
+
+### 📜 Certificaciones Oficiales
+- **Microsoft:** Certified Azure Data Fundamentals | Certified Azure AI Fundamentals.
+- **Cisco:** CCST Cybersecurity | CCST Networking.
+- **CertiProf:** Scrum Master Professional Certification (SMPC) | DevOps Essentials (DEPC) | CAIPC (Artificial Intelligence Professional).
+
+### 🎓 Capacitaciones e Insignias (Badges)
+- **Red Hat:** System Administration I & II (RH124 / RH134 - v9.3).
+- **AWS Academy:** Graduate - Cloud Foundations.
+
+
+Me apasiona construir soluciones eficientes, limpias y bien estructuradas, combinando la rigurosidad técnica con las mejores prácticas ágiles. ¡Siempre abierto a conectar y seguir aprendiendo!
+<p align="center">
+  <img src="separador.svg" width="100%" />
+</p>
+
 
 ## 🌐 Connect With Me
 <a href="mailto:r.godoyroa@gmail.com">
